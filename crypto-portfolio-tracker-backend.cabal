@@ -4,7 +4,9 @@ version:         0
 tested-with:     GHC ==8.6.3 || ==8.8.3 || ==8.10.5
 description:     Backend for a crypto portfolio tracker web app
 author:          José María Landa Chávez
+                 Alfonso Giuseppe Carte Granillo
 maintainer:      José María Landa Chávez - josemaria.landa@gmail.com
+                 Alfonso Giuseppe Carte Granillo - 
 copyright:       2023-03-19 José María Landa Chávez
 build-type:      Simple
 extra-doc-files: 
@@ -34,6 +36,7 @@ library
 
 test-suite crypto-portfolio-tracker-backend-test
   import:         common-options
+  type:           exitcode-stdio-1.0
   hs-source-dirs: test
   main-is:        Spec.hs
   build-depends:
@@ -46,6 +49,7 @@ test-suite crypto-portfolio-tracker-backend-test
 
 benchmark crypto-portfolio-tracker-backend-bench
   import:         common-options
+  type:           exitcode-stdio-1.0
   hs-source-dirs: bench
   main-is:        Main.hs
   build-depends:
