@@ -32,13 +32,19 @@ library
   import:          common-options
   hs-source-dirs:  lib
   exposed-modules: Lib
+  other-modules:   API.API,
+                   API.Ping,
+                   API.Cryptocurrency.Types,
+                   API.Tools.Types,
+                   Utils.Utils
   build-depends:   containers,
                    mtl,
                    conduit,
                    aeson,
                    microlens,
                    text,
-                   bytestring
+                   bytestring,
+                   servant
 
 test-suite crypto-portfolio-tracker-backend-test
   import:         common-options
