@@ -1,0 +1,15 @@
+cradle:
+  multi:
+    # - path: "ignore/"
+    #   config: {cradle: {none: }}
+    - path: "src"
+      config: {cradle: {cabal: {component: "crypto-portfolio-tracker-backend:crypto-portfolio-tracker-backend-exe"}}}
+    
+    - path: "lib"
+      config: {cradle: {cabal: {component: "lib:crypto-portfolio-tracker-backend"}}}
+  
+    - path: "test"
+      config: {cradle: {cabal: {component: "crypto-portfolio-tracker-backend:crypto-portfolio-tracker-backend-test"}}}
+    
+    - path: "bench"
+      config: {cradle: {cabal: {component: "crypto-portfolio-tracker-backend:crypto-portfolio-tracker-backend-bench"}}}

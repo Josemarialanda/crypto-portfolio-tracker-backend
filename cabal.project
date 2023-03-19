@@ -1,0 +1,3 @@
+packages: ./
+package crypto-portfolio-tracker-backend
+tests: true
