@@ -6,7 +6,7 @@
   - [ ] GET /cryptocurrency/latest/#ticker - Returns latest market data for a specific cryptocurrency.
   - [ ] GET /cryptocurrency/latest/#ticker/#convert - Returns latest market data for a specific cryptocurrency in a specific fiat or cryptocurrency.
 
-- [ ] GET /tools/* - Useful utilities such as cryptocurrency and fiat price conversions.
- - [ ] GET /tools/price-conversion - Endpoint to convert a cryptocurrency amount to a fiat or cryptocurrency amount.
+- [ ] POST /tools/* - Useful utilities such as cryptocurrency and fiat price conversions.
+ - [ ] POST /tools/price-conversion <JSON> - Endpoint to convert a cryptocurrency amount to a fiat or cryptocurrency amount.
 
 - [ ] GET /ping - Endpoint to check if the API is up and running.
