@@ -32,7 +32,13 @@ library
   import:          common-options
   hs-source-dirs:  lib
   exposed-modules: Lib
-  build-depends:
+  build-depends:   containers,
+                   mtl,
+                   conduit,
+                   aeson,
+                   microlens,
+                   text,
+                   bytestring
 
 test-suite crypto-portfolio-tracker-backend-test
   import:         common-options
