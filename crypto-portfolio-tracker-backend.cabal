@@ -34,7 +34,7 @@ library
   exposed-modules: Lib
   other-modules:   API.API,
                    API.Ping,
-                   API.Cryptocurrency.Types,
+                   API.Currency.Types,
                    API.Tools.Types,
                    Utils.Utils
   build-depends:   containers,
