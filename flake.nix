@@ -25,6 +25,7 @@
             withHoogle = true;
             packages = p: [ p.crypto-portfolio-tracker-backend ];
             buildInputs = [
+              hspkgs.zlib
               hspkgs.cabal-install
               hspkgs.haskell-language-server
               hspkgs.hlint

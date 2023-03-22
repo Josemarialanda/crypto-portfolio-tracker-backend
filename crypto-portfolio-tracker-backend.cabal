@@ -18,7 +18,15 @@ license-file:    LICENSE
 common common-options
   build-depends:      base >=4.9 && <5
   default-language:   Haskell2010
-  default-extensions: 
+  default-extensions: DataKinds,
+                      TypeOperators,
+                      TypeApplications,
+                      DeriveGeneric,
+                      DeriveAnyClass,
+                      RankNTypes,
+                      KindSignatures,
+                      StandaloneKindSignatures,
+                      PolyKinds
   ghc-options:
 
 executable crypto-portfolio-tracker-backend-exe
@@ -35,7 +43,9 @@ library
   other-modules:   API.API,
                    API.Ping,
                    API.Currency.Types,
+                   API.Currency.Currency,
                    API.Tools.Types,
+                   API.Tools.Tools,
                    Utils.Utils
   build-depends:   containers,
                    mtl,
@@ -44,7 +54,8 @@ library
                    microlens,
                    text,
                    bytestring,
-                   servant
+                   servant-server,
+                   first-class-families
 
 test-suite crypto-portfolio-tracker-backend-test
   import:         common-options
