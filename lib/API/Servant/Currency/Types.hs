@@ -1,8 +1,4 @@
-{-# LANGUAGE ImpredicativeTypes #-}
-{-# LANGUAGE ConstraintKinds #-}
-{-# LANGUAGE FlexibleContexts #-}
-
-module API.Currency.Types where
+module API.Servant.Currency.Types where
 
 {- This module contains the types for the endpoints in the /currency/* namespace.
 * GET /currency/* - Endpoints that return data around cryptocurrencies such as ordered currency lists or price and volume data.
@@ -16,21 +12,19 @@ import Servant  ( type (:<|>), Capture, JSON, type (:>), Get, IsElem', Elem, IsM
 import Data.Aeson   ( FromJSON, ToJSON )
 import GHC.Generics ( Generic )
 import Data.Text    ( Text )
-import Data.Type.Equality ( type (==) )
-import Data.Kind (Type)
-import GHC.TypeLits
-import Data.Data
 
 -- | Return type for /currency/metadata
-data Metadata (symbol :: Symbol) = Metadata
-  { cm'name        :: Text   -- ^ Cryptocurrency name
+data Metadata = Metadata
+  { cm'ticker      :: Text   -- ^ Cryptocurrency ticker
+  , cm'name        :: Text   -- ^ Cryptocurrency name
   , cm'logo        :: Text   -- ^ Cryptocurrency logo
   , cm'description :: Text   -- ^ Cryptocurrency description
   } deriving (Eq, Show, Generic, ToJSON, FromJSON)
 
 -- | Return type for /currency/latest
-data MarketData (symbol :: Symbol) = MarketData
-  { md'price            :: Double -- ^ Price of the cryptocurrency in USD
+data MarketData = MarketData
+  { md'ticker           :: Text   -- ^ Cryptocurrency ticker
+  , md'price            :: Double -- ^ Price of the cryptocurrency in USD
   , md'volume           :: Double -- ^ Volume of the cryptocurrency in USD
   , md'marketCap        :: Double -- ^ Market cap of the cryptocurrency in USD
   , md'percentChange1h  :: Double -- ^ Percent change in the last hour
@@ -40,24 +34,16 @@ data MarketData (symbol :: Symbol) = MarketData
   } deriving (Eq, Show, Generic, ToJSON, FromJSON)
 
 -- | Servant type for /currency/metadata
-type CurrencyMetadataAPI = "currency" :> "metadata" :> Servant.Get '[Servant.JSON] [forall currency. Metadata currency]
+type CurrencyMetadataAPI = "currency" :> "metadata" :> Servant.Get '[Servant.JSON] [Metadata]
 
 -- | Servant type for /currency/metadata/#ticker
-type CurrencyMetadataTickerAPI = forall currency. "currency" :> "metadata" :> Capture "ticker" Text :> Servant.Get '[Servant.JSON] (Metadata currency)
+type CurrencyMetadataTickerAPI = "currency" :> "metadata" :> Capture "ticker" Text :> Servant.Get '[Servant.JSON] Metadata
 
 -- | Servant type for /currency/latest
-type CurrencyLatestAPI = "currency" :> "latest" :> Servant.Get '[Servant.JSON] [forall currency. MarketData currency]
+type CurrencyLatestAPI = "currency" :> "latest" :> Servant.Get '[Servant.JSON] [MarketData]
 
 -- | Servant type for /currency/latest/#ticker
-type CurrencyLatestTickerAPI = forall currency. "currency" :> "latest" :> Capture "ticker" Text :> Servant.Get '[Servant.JSON] (MarketData currency)
+type CurrencyLatestTickerAPI = "currency" :> "latest" :> Capture "ticker" Text :> Servant.Get '[Servant.JSON] MarketData
 
 -- | Servant type for /currency/*
 type CurrencyAPI = CurrencyMetadataAPI :<|> CurrencyMetadataTickerAPI :<|> CurrencyLatestAPI :<|> CurrencyLatestTickerAPI
-
-
-
-
-
-type SupportedCurrencies = '["BTC", "ETH"] :: [Symbol]
-
-type IsSupportedCurrency symbol = IsMember symbol SupportedCurrencies

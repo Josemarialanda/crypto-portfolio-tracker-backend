@@ -26,7 +26,8 @@ common common-options
                       RankNTypes,
                       KindSignatures,
                       StandaloneKindSignatures,
-                      PolyKinds
+                      PolyKinds,
+                      TypeFamilies
   ghc-options:
 
 executable crypto-portfolio-tracker-backend-exe
@@ -34,28 +35,44 @@ executable crypto-portfolio-tracker-backend-exe
   hs-source-dirs: src
   main-is:        Main.hs
   ghc-options:    -threaded -rtsopts -with-rtsopts=-N
-  build-depends:  crypto-portfolio-tracker-backend
+  build-depends:  crypto-portfolio-tracker-backend,
+                  wai,
+                  warp
 
 library
   import:          common-options
   hs-source-dirs:  lib
-  exposed-modules: Lib
-  other-modules:   API.API,
-                   API.Ping,
-                   API.Currency.Types,
-                   API.Currency.Currency,
-                   API.Tools.Types,
-                   API.Tools.Tools,
-                   Utils.Utils
+  exposed-modules: Lib, API.Servant.API
+  other-modules:   API.Servant.Currency.Types,
+                   API.Servant.Currency.Currency,
+                   API.Servant.Currency.Mock,
+                   API.Servant.Tools.Types,
+                   API.Servant.Tools.Tools,
+                   API.Data.Currency.Currency,
+                   API.Data.Currency.Types,
+                   Utils.Utils,
+                   Utils.Types,
+                   CoinMarketCap.API,
+                   CoinMarketCap.Client,
+                   CoinMarketCap.Core,
+                   CoinMarketCap.Run,
+                   CoinMarketCap.Types,
+                   CoinMarketCap.Utils
   build-depends:   containers,
                    mtl,
                    conduit,
                    aeson,
+                   MissingH,
+                   casing,
                    microlens,
                    text,
                    bytestring,
                    servant-server,
-                   first-class-families
+                   servant-client,
+                   first-class-families,
+                   http-api-data,
+                   http-client,
+                   http-client-tls,
 
 test-suite crypto-portfolio-tracker-backend-test
   import:         common-options

@@ -1,4 +1,5 @@
-module API.Tools.Types where
+module API.Servant.Tools.Types where
+  
 import Data.Text (Text)
 import GHC.Generics
 import Data.Aeson

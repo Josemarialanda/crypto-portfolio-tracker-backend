@@ -1,5 +1,6 @@
-module API.Tools.Tools where
-import API.Tools.Types (PriceConversionRequest, PriceConversionResponse)
+module API.Servant.Tools.Tools where
+  
+import API.Servant.Tools.Types (PriceConversionRequest, PriceConversionResponse)
 import Control.Exception (Handler)
 
 priceConversionHandler :: PriceConversionRequest -> Handler PriceConversionResponse

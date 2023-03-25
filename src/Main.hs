@@ -1,4 +1,7 @@
 module Main where
 
+import Network.Wai.Handler.Warp ( run )
+import API.Servant.API ( app )
+
 main :: IO ()
-main = putStrLn "Hello, World!"
+main = run 8080 app
