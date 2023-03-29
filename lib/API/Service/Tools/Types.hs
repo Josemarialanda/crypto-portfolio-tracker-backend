@@ -1,4 +1,4 @@
-module API.Servant.Tools.Types where
+module API.Service.Tools.Types where
   
 import Data.Text (Text)
 import GHC.Generics

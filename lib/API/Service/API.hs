@@ -1,11 +1,11 @@
-module API.Servant.API where
+module API.Service.API where
 
-import API.Servant.Currency.Currency
+import API.Service.Currency.Currency
     ( currencyLatestHandler,
       currencyLatestTickerHandler,
       currencyMetadataHandler,
       currencyMetadataTickerHandler )
-import API.Servant.Currency.Types ( CurrencyAPI )
+import API.Service.Currency.Types ( CurrencyAPI )
 import Servant ( type (:<|>)(..)
                , Proxy(Proxy)
                , serve

@@ -1,8 +1,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module API.Servant.Currency.Mock where
+module API.Service.Currency.Mock where
 
-import API.Servant.Currency.Types ( Metadata(..), MarketData(..) )
+import API.Service.Currency.Types ( Metadata(..), MarketData(..) )
 import qualified Data.Text as Text
 import GHC.TypeLits (KnownSymbol)
 

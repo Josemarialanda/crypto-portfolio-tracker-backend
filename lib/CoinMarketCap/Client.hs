@@ -1,25 +1,22 @@
-module CoinMarketCap.Client
-  ( getTicker,
-    getTickers,
-    getGlobalData,
-  )
-where
+module CoinMarketCap.Client where
 
-import CoinMarketCap.API (CoinMarketCapAPI)
 import CoinMarketCap.Types
-  ( FiatSymbol,
-    GlobalData,
-    TickerId,
-    Tickers,
-  )
-import Data.Proxy (Proxy (..))
-import Servant (type (:<|>) ((:<|>)))
-import Servant.Client (ClientM, client)
+import Servant ( FromHttpApiData(parseQueryParam), ToHttpApiData(toQueryParam) )
+import Data.Text
 
-coinMarketCapAPI :: Proxy CoinMarketCapAPI
-coinMarketCapAPI = Proxy
+instance FromHttpApiData AirDropParameters where
+  parseQueryParam :: Text -> Either Text AirDropParameters
+  parseQueryParam = Right . AirDropParameters
 
-getTicker :: TickerId -> Maybe FiatSymbol -> ClientM Tickers
-getTickers :: Maybe Integer -> Maybe Integer -> Maybe FiatSymbol -> ClientM Tickers
-getGlobalData :: Maybe FiatSymbol -> ClientM GlobalData
-getTicker :<|> getTickers :<|> getGlobalData = client coinMarketCapAPI
+instance ToHttpApiData AirDropParameters where
+  toQueryParam :: AirDropParameters -> Text
+  toQueryParam (AirDropParameters id) = id
+
+instance FromHttpApiData AirDropsParameters where
+  parseQueryParam :: Text -> Either Text AirDropsParameters
+  parseQueryParam txt = 
+
+instance ToHttpApiData AirDropsParameters where
+  toQueryParam :: AirDropsParameters -> Text
+  toQueryParam = undefined
+

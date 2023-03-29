@@ -27,7 +27,8 @@ common common-options
                       KindSignatures,
                       StandaloneKindSignatures,
                       PolyKinds,
-                      TypeFamilies
+                      TypeFamilies,
+                      InstanceSigs
   ghc-options:
 
 executable crypto-portfolio-tracker-backend-exe
@@ -42,37 +43,28 @@ executable crypto-portfolio-tracker-backend-exe
 library
   import:          common-options
   hs-source-dirs:  lib
-  exposed-modules: Lib, API.Servant.API
-  other-modules:   API.Servant.Currency.Types,
-                   API.Servant.Currency.Currency,
-                   API.Servant.Currency.Mock,
-                   API.Servant.Tools.Types,
-                   API.Servant.Tools.Tools,
+  exposed-modules: Lib, API.Service.API
+  other-modules:   API.Service.Currency.Types,
+                   API.Service.Currency.Currency,
+                   API.Service.Currency.Mock,
+                   API.Service.Tools.Types,
+                   API.Service.Tools.Tools,
                    API.Data.Currency.Currency,
                    API.Data.Currency.Types,
                    Utils.Utils,
                    Utils.Types,
                    CoinMarketCap.API,
                    CoinMarketCap.Client,
-                   CoinMarketCap.Core,
-                   CoinMarketCap.Run,
-                   CoinMarketCap.Types,
-                   CoinMarketCap.Utils
-  build-depends:   containers,
-                   mtl,
-                   conduit,
-                   aeson,
-                   MissingH,
-                   casing,
-                   microlens,
+                   CoinMarketCap.Types
+  build-depends:   aeson,
                    text,
                    bytestring,
                    servant-server,
                    servant-client,
-                   first-class-families,
-                   http-api-data,
                    http-client,
-                   http-client-tls,
+                   first-class-families,
+                   transformers,
+                   split
 
 test-suite crypto-portfolio-tracker-backend-test
   import:         common-options

@@ -1,7 +1,7 @@
 module Main where
 
 import Network.Wai.Handler.Warp ( run )
-import API.Servant.API ( app )
+import API.Service.API ( app )
 
 main :: IO ()
 main = run 8080 app

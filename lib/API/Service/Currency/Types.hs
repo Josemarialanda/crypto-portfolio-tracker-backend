@@ -1,4 +1,4 @@
-module API.Servant.Currency.Types where
+module API.Service.Currency.Types where
 
 {- This module contains the types for the endpoints in the /currency/* namespace.
 * GET /currency/* - Endpoints that return data around cryptocurrencies such as ordered currency lists or price and volume data.

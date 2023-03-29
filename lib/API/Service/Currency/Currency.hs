@@ -2,13 +2,13 @@
 {-# LANGUAGE ImpredicativeTypes #-}
 {-# LANGUAGE ScopedTypeVariables #-}
 
-module API.Servant.Currency.Currency where
+module API.Service.Currency.Currency where
 
 import Servant ( Handler )
-import API.Servant.Currency.Types ( Metadata, MarketData )
+import API.Service.Currency.Types ( Metadata, MarketData )
 import qualified Data.Text as Text
 import Data.Text (Text)
-import API.Servant.Currency.Mock (mockMetadata, mockMarketData)
+import API.Service.Currency.Mock (mockMetadata, mockMarketData)
 
 currencyMetadataHandler :: Handler [Metadata]
 currencyMetadataHandler = return mockMetadata
